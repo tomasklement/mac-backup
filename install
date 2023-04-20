@@ -1,0 +1,18 @@
+#!/bin/bash
+echo "Installing Mac backup"
+
+# Change working directory to place where this script is saved
+cd "$(dirname "$0")"
+
+source externals/bashutils/validation
+source externals/bashutils/colors
+source externals/bashutils/error
+source externals/bashutils/launchd
+
+source functions.sh
+
+bkp::load_main_config
+bkp::validate_all_configs
+mld::create_job "${APP_NAME}" "process"
+
+echo -e "${GREEN}Finished installing Mac backup${NC}"

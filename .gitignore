@@ -1,0 +1,11 @@
+# Ignore backup times
+/backups_times/*
+
+# Ignore backup configs
+/backups_config/*
+
+# But not the sample
+!/backups_config/sample.conf
+
+# Ignore custom configuration file
+/config.sh

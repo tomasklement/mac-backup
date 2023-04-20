@@ -1,0 +1,17 @@
+#!/bin/bash
+echo "Restarting Mac backup"
+
+# Change working directory to place where this script is saved
+cd "$(dirname "$0")"
+
+source externals/bashutils/colors
+source externals/bashutils/error
+source externals/bashutils/launchd
+
+source functions.sh
+
+bkp::load_main_config
+mld::stop_job "${APP_NAME}"
+mld::start_job "${APP_NAME}"
+
+echo -e "${GREEN}Mac backup agent loaded${NC}"

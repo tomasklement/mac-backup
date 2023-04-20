@@ -1,0 +1,16 @@
+#!/bin/bash
+echo "Uninstalling Mac backup"
+
+# Change working directory to place where this script is saved
+cd "$(dirname "$0")"
+
+source externals/bashutils/colors
+source externals/bashutils/error
+source externals/bashutils/launchd
+
+source functions.sh
+
+bkp::load_main_config
+mld::remove_job "${APP_NAME}"
+
+echo -e "${GREEN}Finished uninstalling Mac backup${NC}"
