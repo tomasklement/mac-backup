@@ -134,7 +134,7 @@ function bkp::check_config_exists {
   config_path=$( bkp::get_config_path "${1}" )
 
   if [[ ! -r "${config_path}" ]]; then
-    err::throw 5 "Cannot read configuration file \"${1}.conf\" in \""${BACKUPS_CONFIG_DIR}"\" dir"
+    err::throw 5 "Cannot read configuration file \"${config_path}\" in \""${BACKUPS_CONFIG_DIR}"\" dir"
   fi
 }
 

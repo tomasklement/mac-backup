@@ -7,7 +7,7 @@ REFRESH_INTERVAL="60"
 readonly LIBRARY_DIR="/Library/LaunchDaemons"
 
 # Directory with particular backups configurations
-readonly BACKUPS_CONFIG_DIR="backup_config"
+readonly BACKUPS_CONFIG_DIR="backups_config"
 
 # File with custom config
 readonly CUSTOM_CONFIG_FILE_NAME="config.sh"
