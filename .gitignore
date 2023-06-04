@@ -1,6 +1,3 @@
-# Ignore backup times
-/backup_times/*
-
 # Ignore backup configs
 /backups_config/*
 
