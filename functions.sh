@@ -273,13 +273,20 @@ function bkp::should_backup_run {
 
 # Runs particular backup
 # Globals:
-#   Config vars: BACKUPS_CONFIG_DIR
+#   APP_NAME App name
+#   SOURCE_DIR Source directory
+#   DESTINATION_DIR Destination directory
+#   RSYNC_TIMEOUT Timeout for rsync connection
+#   GREEN, BLUE, NC Colors
 # Arguments:
 #   Config file name
 # Returns:
 #   None
 function bkp::backup {
   local config_path
+  local rsync_result_code
+  local rsync_result
+  local timestamp
 
   bkp::check_config_exists "${1}"
   config_path=$( bkp::get_config_path "${1}" )
@@ -290,7 +297,14 @@ function bkp::backup {
   bkp::check_backup_paths
 
   echo "Syncing \"${SOURCE_DIR}\" to \"${DESTINATION_DIR}\""
-  rsync -az --timeout="${RSYNC_TIMEOUT}" --delete "${SOURCE_DIR}" "${DESTINATION_DIR}" &> /dev/null
+  rsync_result=$( rsync -az --timeout="${RSYNC_TIMEOUT}" --delete "${SOURCE_DIR}" "${DESTINATION_DIR}" 2>&1 )
+  rsync_result_code="$?"
+  if [[ "${rsync_result_code}" -gt 0 ]]; then
+    timestamp=$( date +"%Y-%m-%d %T" )
+    echo "[${timestamp}] ${rsync_result}" >> "rsync.log"
+    err::throw 1 "Rsync failed (${rsync_result_code})"
+  fi
+
 
   echo -e "${GREEN}Backup \"${1}\" finished${NC}"
 }

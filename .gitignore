@@ -1,5 +1,5 @@
 # Ignore backup times
-/backups_times/*
+/backup_times/*
 
 # Ignore backup configs
 /backups_config/*
@@ -9,3 +9,9 @@
 
 # Ignore custom configuration file
 /config.sh
+
+# Ignore rsync log
+/rsync.log
+
+# Ignore custom automator app for restricted folders backup
+/backup.app

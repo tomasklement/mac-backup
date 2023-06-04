@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Backup daemon start delay, can be useful when using network disks which are mounted
+# at login and are not yet available when backup daemon starts [seconds]
+START_DELAY="120"
+
 # Interval in which is checked the need of backup [seconds]
 REFRESH_INTERVAL="60"
 
