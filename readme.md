@@ -100,3 +100,12 @@ _path_to_mac_backup_installation_dir_/mac-backup/process &>/dev/null &
 
 * Click **+** to add new login item
 * Locate your `backup.app` and click **Open**
+
+### Troubleshooting ###
+Change the `backup.app` script content by following one and replace `_path_to_mac_backup_installation_dir_` with absolute path where is your Mac backup downloaded):
+
+```bash
+_path_to_mac_backup_installation_dir_/mac-backup/process >> _path_to_mac_backup_installation_dir_/mac-backup/backup.log 2>&1
+```
+
+Observe `backup.log` in your `mac-backup` folder.

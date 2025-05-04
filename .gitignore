@@ -10,5 +10,8 @@
 # Ignore rsync log
 /rsync.log
 
+# Ignore backup debugging log
+/backup.log
+
 # Ignore custom automator app for restricted folders backup
 /backup.app
