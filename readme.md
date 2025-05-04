@@ -2,7 +2,7 @@
 
 Periodically synchronizes one or more directories with another ones. Easy to install and configure.
 
-## Installation
+## Download
 You need to have installed git. See [git installation guide](https://github.com/git-guides/install-git#install-git-on-mac).
 
 Go to the installation directory where you store your executables, i.e.:
@@ -40,7 +40,11 @@ cp sample.conf my_backup_1.conf
 cp sample.conf my_backup_2.conf
 ```
 ## Warning
-Some folders like Documents, Downloads etc. are not accessible to backup script. If you want to run backup for any of these folders skip to section **Workaround for backups of restricted folders**
+Some folders like Documents, Downloads etc. are not accessible to backup script. If you want to run backup for any of these folders you need to add full disk access to the Terminal app.
+
+1) Go to System System settings → Privacy & Security → Full Disk Access
+2) Click + at the bottom of the list
+3) Find Application/Utilities/Terminal.app and click Open
 
 ## Installation
 ```bash
@@ -70,32 +74,3 @@ Runs particular backup configured in given config file.
 ./restart
 ```
 Unloads and loads daemon.
-## Workaround for backups of restricted folders
-Some folders like Documents, Downloads etc. are not accessible to backup script. To overcome this limitation follow these steps:
-### Create automator app
-* Run Automator app (installed by default on Mac)
-* Create new file (File > New)
-* Choose **Application**
-
-![Choose Application](/img/automator_1.png)
-
-* Find **Run Shell Script** and double-click it to create new action
-
-![Find Run Shell Script](/img/automator_2.png)
-
-* Select Shell: `/bin/bash`
-* Fill the script content, replace `_path_to_mac_backup_installation_dir_` with absolute path where is your Mac backup downloaded:
-
-```bash
-_path_to_mac_backup_installation_dir_/mac-backup/process &>/dev/null &
-```
-* Save the app as `backup.app` to the `mac-backup` folder
-
-### Add the automator app to login items
-* Open **System settings**
-* Search for "login items"
-
-![Find Run Shell Script](/img/login_items_1.png)
-
-* Click **+** to add new login item
-* Locate your `backup.app` and click **Open**

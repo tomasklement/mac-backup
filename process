@@ -11,13 +11,22 @@ source externals/bashutils/macnotify
 
 source functions.sh
 
+echo "Loading main configuration"
+
 bkp::load_main_config
-bkp::validate_all_configs
+
+echo "Waiting ${START_DELAY} seconds to start backup daemon"
 
 sleep "${START_DELAY}"
+
+echo "Loading and validating backups configurations"
+
+bkp::validate_all_configs
+
+echo "Backup daemon started"
 
 while :
 do
   bkp::process
-	sleep "${REFRESH_INTERVAL}"
+  sleep "${REFRESH_INTERVAL}"
 done
